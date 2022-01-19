@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="TeleOp4785_Version_1.0", group="Iterative Opmode")
+@TeleOp(name="TeleOp4785_Version_2.0", group="Iterative Opmode")
 
 public class TeleOp4785 extends OpMode
 {
@@ -52,8 +52,8 @@ public class TeleOp4785 extends OpMode
     public void loop() {
 
         //Experimental Drive
-        double angle = Math.atan2(gamepad1.right_stick_y,gamepad1.right_stick_y);
-        double magnitude  = Math.sqrt(gamepad1.right_stick_x * 2.0 + gamepad1.right_stick_y * 2.0);
+        double angle = Math.atan2(gamepad1.left_stick_y,gamepad1.left_stick_x);
+        double magnitude  = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
 
         //double front_right_back_left_power = Math.sin(angle-(1/(4 * Math.PI))) * magnitude;
         //double front_left_back_right_power = Math.sin(angle+(1/(4 * Math.PI))) * magnitude;
@@ -63,7 +63,6 @@ public class TeleOp4785 extends OpMode
 
         double back_right_power = (Math.sin(angle+(1/(4 * Math.PI))) * magnitude) - gamepad1.left_stick_y;
         double back_left_power = (Math.sin(angle-(1/(4 * Math.PI))) * magnitude) + gamepad1.left_stick_y;
-
 
         Ron.front_right.setPower(front_right_power);
         Ron.front_left.setPower(front_left_power);
